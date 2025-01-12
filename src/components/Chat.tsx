@@ -4,15 +4,24 @@ import {Button} from "./ui/button";
 import {Input} from "./ui/input";
 import {Avatar, AvatarImage, AvatarFallback} from "./ui/avatar";
 import { useChat } from "ai/react";
+import { ScrollArea } from "./ui/scroll-area"
+import { useRef, useEffect } from "react";
+
 
 export function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
   api: '/api/chat', 
 });
+ // Ref para o contêiner de mensagens
+ const messagesEndRef = useRef(null);
+
+ // Rola automaticamente para o final sempre que as mensagens mudarem
+ useEffect(() => {
+   messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+ }, [messages]);
 console.log("Mensagens no estado inicial:", messages);
   return(
-    
-    <Card className='w-[400px] h-[700px] grid grid-rows-[min-content_1fr_min-content]'>
+    <Card className='w-[440px]'>
     <CardHeader>
       <CardTitle>
         Chat AI
@@ -22,27 +31,30 @@ console.log("Mensagens no estado inicial:", messages);
         </CardDescription>
     </CardHeader>
     <CardContent className='space-y-4'>
-    {messages.map((message) => (
-        <div key={message.id} className="flex gap-3 text-slate-600 text-sm">
-         
-          {message.role === 'user' && (
-              <Avatar>
-              <AvatarFallback>SM</AvatarFallback>
-              <AvatarImage />
-              </Avatar>
-          )}
-          {message.role === 'assistant' && (
-              <Avatar>
-              <AvatarFallback>AI</AvatarFallback>
-              <AvatarImage />
-              </Avatar>
-          )}
-          <p className="leading-relaxed">
-            <span className="block font-bold text-slate-700">{message.role === 'user' ? 'Humano' : 'Droid'}</span>
-           {message.content}
-          </p>
-        </div>
-      ))}
+      <ScrollArea className="h-[600px] w-full pr-4">
+      {messages.map((message) => (
+          <div key={message.id}   className={`flex gap-3 text-slate-600 mb-4  ${message.role === 'user' ? 'flex-row-reverse text-right' : 'justify-start'}`}>
+          
+            {message.role === 'user' && (
+                <Avatar >
+                <AvatarFallback>SM</AvatarFallback>
+                <AvatarImage src='https://github.com/shadcn.png' />
+                </Avatar>
+            )}
+            {message.role === 'assistant' && (
+                <Avatar className='flex-row-reverse' >
+                <AvatarFallback>AI</AvatarFallback>
+                <AvatarImage src='images/droid.jpg' />
+                </Avatar>
+            )}
+            <p className="leading-relaxed ">
+              <span className="block font-bold text-slate-700">{message.role === 'user' ? 'Humano' : 'Droid'}</span>
+            {message.content}
+            </p>
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+        </ScrollArea>
     </CardContent>
     <CardFooter >
       <form className='w-full flex gap-2' onSubmit={handleSubmit}>
