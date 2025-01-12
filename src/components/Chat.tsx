@@ -21,8 +21,8 @@ export function Chat() {
  }, [messages]);
 console.log("Mensagens no estado inicial:", messages);
   return(
-    <Card className='w-[440px]'>
-    <CardHeader>
+    <Card className='w-[440px] shadow-md'>
+    <CardHeader className='shadow-md mb-2'>
       <CardTitle>
         Chat AI
       </CardTitle>
@@ -59,7 +59,7 @@ console.log("Mensagens no estado inicial:", messages);
     <CardFooter >
       <form className='w-full flex gap-2' onSubmit={handleSubmit}>
         <Input type="text" className='' placeholder='Como eu posso te ajudar?' onChange={handleInputChange} value={input} />
-        <Button type="submit">Enviar</Button>
+        <Button type="submit"><svg class="h-16 w-16 "  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="22" y1="2" x2="11" y2="13" />  <polygon points="22 2 15 22 11 13 2 9 22 2" /></svg></Button>
       </form>
     </CardFooter>
   </Card>
