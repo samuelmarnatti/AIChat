@@ -24,7 +24,7 @@ export function ChatButton() {
     </Button>
         )}
       {isToggled && (
-       <Chat/>
+       <Chat closeToggle={() => setIsToggled(false)}/>
       )}
     </div>
   );
