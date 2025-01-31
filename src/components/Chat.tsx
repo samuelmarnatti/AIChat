@@ -54,12 +54,14 @@ console.log("Mensagens no estado inicial:", messages);
                 <AvatarImage src='images/droid.jpg' />
                 </Avatar>
             )}
-            <p className="leading-relaxed ">
-              <span className="block font-bold text-slate-700">{message.role === 'user' ? 'Humano' : 'Droid'}</span>
-              <ReactMarkdown>
-                 {message.content}
-              </ReactMarkdown>
-            </p>
+            <ReactMarkdown
+                  className="leading-relaxed"
+                  components={{
+                    p: ({ children }) => <span className="block font-bold text-slate-700">{children}</span>,
+                  }}
+                     >
+              {message.content}
+            </ReactMarkdown>
           </div>
         ))}
         <div ref={messagesEndRef} />

@@ -2,8 +2,14 @@
 import {Button} from "./ui/button";
 import { Chat } from "@/components/Chat";
 import {  useState  } from "react";
-import { MessageCircleMore} from "lucide-react";
+import { MessageCircleMore,Send} from "lucide-react";
 import { motion } from 'framer-motion';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip"
 
 export function ChatButton() {
   const [isToggled, setIsToggled] = useState(false);
@@ -16,14 +22,14 @@ export function ChatButton() {
     <div className=''>
          {!isToggled && (
            
-           <Button
+           <div
              onClick={handleToggle}
              variant={isToggled ? "default" : "outline"} // Alterna estilos
-             className={`fixed w-14 h-14 rounded-full shadow-lg ${isToggled ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}`}
+             className={`fixed w-14 h-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 cursor-pointer`}
            >
-<MessageCircleMore size={40} />
-
-    </Button>
+<MessageCircleMore className='text-white weight-300 relative top-2 left-2' size={40} />
+      
+    </div>
         )}
       {isToggled && (
        <motion.div className='absolute bottom-[82%] right-4'
