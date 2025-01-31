@@ -23,7 +23,7 @@ export function Chat({ closeToggle }) {
  }, [messages]);
 console.log("Mensagens no estado inicial:", messages);
   return(
-    <Card className='w-[440px] shadow-md'>
+    <Card className='2xl:w-[440px] md:w-[340px] shadow-md'>
     <CardHeader className='shadow-md mb-2 grid grid-cols-2 items-center'>
     <CardTitle>
       Chat AI
@@ -38,7 +38,7 @@ console.log("Mensagens no estado inicial:", messages);
         </CardDescription> */}
     </CardHeader>
     <CardContent className='space-y-4'>
-      <ScrollArea className="h-[600px] w-full pr-4">
+    <ScrollArea className="lg:h-[400px] md:h-[300px] 2xl:h-[600px] w-full pr-4">
       {messages.map((message) => (
           <div key={message.id}   className={`flex gap-3 text-slate-600 mb-4  ${message.role === 'user' ? 'flex-row-reverse text-right' : 'justify-start'}`}>
           
