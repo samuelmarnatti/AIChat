@@ -55,11 +55,10 @@ export function Chat({ closeToggle }) {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex gap-3 text-slate-600 mb-4 ${
-                message.role === "user"
-                  ? "flex-row-reverse text-right"
-                  : "justify-start"
-              }`}
+              className={`flex gap-3 text-slate-600 mb-4 ${message.role === "user"
+                ? "flex-row-reverse text-right"
+                : "justify-start"
+                }`}
             >
               {message.role === "user" && (
                 <Avatar>
