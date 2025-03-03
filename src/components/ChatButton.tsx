@@ -25,7 +25,7 @@ export function ChatButton() {
         </div>
       )}
       {isToggled && (
-        <motion.div className='absolute bottom-[82%] right-4'
+        <motion.div className='absolute bottom-[82%] right-[-60px]'
           initial={{ opacity: 0, y: 50 }} // Início fora da tela abaixo
           animate={{ opacity: 1, y: 0 }} // Animação para posição original
           exit={{ opacity: 0, y: 50 }} // Animação ao sair

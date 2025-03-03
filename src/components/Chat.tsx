@@ -51,7 +51,7 @@ export function Chat({ closeToggle }) {
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <ScrollArea className="lg:h-[400px] md:h-[300px] 2xl:h-[600px] w-full pr-4">
+        <ScrollArea className="h-[400px]  2xl:h-[600px] w-[250px] md:w-full pr-4">
           {messages.map((message) => (
             <div
               key={message.id}
